@@ -1,3 +1,12 @@
+const dotenv = require('dotenv');
+dotenv.config();
+
+// New Instantiation of NLP API "Meaning Cloud"
+var meaningCloudApi = new meaningCloudApi({
+    application_key: process.env.API_KEY
+})
+console.log(`Your API key is ${process.env.API_KEY}`)
+
 var path = require('path')
 const express = require('express')
 const mockAPIResponse = require('./mockAPI.js')
