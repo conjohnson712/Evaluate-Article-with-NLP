@@ -1,18 +1,16 @@
-// Reference: The final product from Lesson 4, Concept 8:
-// https://classroom.udacity.com/nanodegrees/nd0011/parts/cd0430/modules/c73f80be-8f45-406d-a709-8123a69e6d52/lessons/722ecfe4-3174-4a6e-8638-ea0ab8eb49ac/concepts/d8172904-6de9-4216-86e9-8b5a093d50aa
+// References: 
+// Lesson 4, Concept 8, Final Code: https://classroom.udacity.com/nanodegrees/nd0011/parts/cd0430/modules/c73f80be-8f45-406d-a709-8123a69e6d52/lessons/722ecfe4-3174-4a6e-8638-ea0ab8eb49ac/concepts/d8172904-6de9-4216-86e9-8b5a093d50aa
+// Knowledge Response: https://knowledge.udacity.com/questions/503907?utm_campaign=ret_600_auto_ndxxx_knowledge-comment-created_na&utm_source=blueshift&utm_medium=email&utm_content=ret_600_auto_ndxxx_knowledge-comment-created_na&bsft_clkid=5e35f546-a3c6-41ae-874e-8660eb2fe41a&bsft_uid=08ebc84d-5614-480b-aa4e-e5c03065d705&bsft_mid=efb661eb-33d1-4803-99cb-3c704771f221&bsft_eid=bee2de82-decd-e24c-d46e-8971c91d877c&bsft_txnid=683acc04-8d7e-439b-8a40-3728297bc1d0&bsft_mime_type=html&bsft_ek=2021-02-28T15%3A53%3A13Z&bsft_aaid=8d7e276e-4a10-41b2-8868-423fe96dd6b2&bsft_lx=1&bsft_tv=1#503957
 const dotenv = require('dotenv');
 dotenv.config();
 
-// NLP "Sentiment Analysis API"
-var SentimentAnalysisApi = new SentimentAnalysisApi({
-    application_key: process.env.API_KEY
-})
 
 var path = require('path')
 const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
-const sentimentAnalysis = require('sentiment-analysis-api')
+const apiKey = process.env.API_KEY
+const meaningCloud = require('meaning-cloud')
 const mockAPIResponse = require('./mockAPI.js')
 
 const app = express()
@@ -23,7 +21,7 @@ app.use(bodyParser.urlencoded({
 }))
 
 app.use(cors())
-app.use(sentimentAnalysis())
+app.use(meaningCloud())
 
 
 
@@ -32,8 +30,8 @@ app.use(express.static('dist'))
 console.log(__dirname)
 
 app.get('/', function (req, res) {
-    // res.sendFile('dist/index.html')
-    res.sendFile(path.resolve('src/client/views/index.html'))
+    res.sendFile('dist/index.html')
+    // res.sendFile(path.resolve('src/client/views/index.html'))
 })
 
 // designates what port the app will listen to for incoming requests
@@ -44,3 +42,4 @@ app.listen(8080, function () {
 app.get('/test', function (req, res) {
     res.send(mockAPIResponse)
 })
+
