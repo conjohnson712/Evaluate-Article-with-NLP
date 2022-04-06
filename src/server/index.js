@@ -4,13 +4,13 @@
 const dotenv = require('dotenv');
 dotenv.config();
 
+const apiKey = process.env.API_KEY
+const apiURL = 'https://api.meaningcloud.com/sentiment-2.1?'
 
 var path = require('path')
 const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
-const apiKey = process.env.API_KEY
-const meaningCloud = require('meaning-cloud')
 const mockAPIResponse = require('./mockAPI.js')
 
 const app = express()
@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded({
 }))
 
 app.use(cors())
-app.use(meaningCloud())
+
 
 
 
@@ -43,3 +43,24 @@ app.get('/test', function (req, res) {
     res.send(mockAPIResponse)
 })
 
+
+// POST Route for the API
+// References: Recycled from Weather Journal Project in  course
+// Lesson 3-5: https://classroom.udacity.com/nanodegrees/nd0011/parts/cd0429/modules/d153872b-b417-4f32-9c77-d809dc21581d/lessons/ls1845/concepts/0c75d5b8-3dde-4404-9552-c1c76c10b2ab
+// Lesson 3-8: https://classroom.udacity.com/nanodegrees/nd0011/parts/cd0429/modules/d153872b-b417-4f32-9c77-d809dc21581d/lessons/ls1845/concepts/81afa555-a670-428e-99a2-3a4d3ccefc96
+// Lesson 3-9: https://classroom.udacity.com/nanodegrees/nd0011/parts/cd0429/modules/d153872b-b417-4f32-9c77-d809dc21581d/lessons/ls1845/concepts/f0b46126-a01c-43c9-8431-9e9e6ae4d85d
+
+/* Function to POST data */
+// Reference from Weather Journal App project from previous course
+// Lesson 4-6: https://classroom.udacity.com/nanodegrees/nd0011/parts/cd0429/modules/d153872b-b417-4f32-9c77-d809dc21581d/lessons/ls1846/concepts/211c2a41-4ab7-48ea-94cc-b44b2e4363c4
+// Async function that fetches the URL and necessary data and logs it
+app.post('/apiData', async function(req, res) {
+    const apiCall = await fetch(`${apiURL}key=${apiKey}&lang=en&url=${req.body.url}`)
+    try {
+        const data = await res.json();
+        res.send(data);
+        console.log(data);
+    } catch(error) {
+        console.log("error", error)
+    }
+})
