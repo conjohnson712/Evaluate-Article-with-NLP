@@ -10,7 +10,7 @@ import './styles/footer.scss'
 import './styles/header.scss'
 
 
-console.log(checkForName);
+console.log(checkForName, handleSubmit);
 
 alert("I EXIST")
 
