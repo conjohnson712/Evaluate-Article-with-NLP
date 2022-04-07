@@ -1,15 +1,12 @@
+// nameChecker: inputText --> void
+// Checks to ensure that the URL input is valid using regex
+// Reference: https://www.geeksforgeeks.org/check-if-an-url-is-valid-or-not-using-regular-expression/
 function checkForName(inputText) {
     console.log("::: Running checkForName :::", inputText);
-    let names = [
-        "Picard",
-        "Janeway",
-        "Kirk",
-        "Archer",
-        "Georgiou"
-    ]
+    const regex = inputText.match("((http|https)://)(www.)?[a-zA-Z0-9@:%._\\+~#?&//=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%._\\+~#?&//=]*)");
 
-    if(names.includes(inputText)) {
-        alert("Welcome, Captain!")
+    if(regex == null) {
+        alert("Please Enter A Valid URL")
     }
 }
 
