@@ -1,3 +1,5 @@
+import { checkForName } from "./nameChecker"
+
 function handleSubmit(event) {
     event.preventDefault()
 
@@ -19,8 +21,8 @@ function handleSubmit(event) {
         body: JSON.stringify({url: formText}), // body data type must match "Content-Type" header
     })
     .then(res => res.json())
-    .then(function() {
-        updateUI()
+    .then(function(res) {
+        updateUI(res)
     })
     } else {
         alert('Submission Failed')
