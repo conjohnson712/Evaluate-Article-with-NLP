@@ -19,14 +19,16 @@ function handleSubmit(event) {
         body: JSON.stringify({url: formText}), // body data type must match "Content-Type" header
     })
     .then(res => res.json())
-    .then(function() {
-        updateUI()
+    .then(function(res) {
+        updateUI(res)
     })
     } else {
         alert('Submission Failed')
     }
 }
 
+// Event Listener to start handleSubmit on Click
+document.getElementById("submit").addEventListener("click", handleSubmit);
 
 // updateUI: async --> void
 // Function to update UI with NLP results
@@ -52,4 +54,4 @@ const updateUI = async () => {
     }
 }
 
-export { handleSubmit }
+export { handleSubmit, updateUI }

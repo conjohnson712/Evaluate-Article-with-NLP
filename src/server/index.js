@@ -28,8 +28,8 @@ app.use(express.static('dist'))
 console.log(__dirname)
 
 app.get('/', function (req, res) {
-    // res.sendFile('dist/index.html')
-    res.sendFile(path.resolve('src/client/views/index.html'))
+    res.sendFile('dist/index.html')
+    // res.sendFile(path.resolve('src/client/views/index.html'))
 })
 
 // designates what port the app will listen to for incoming requests
@@ -60,15 +60,11 @@ app.get('/apiData', (req, res)=>{
 });
 
 // POST Route 
-app.post('/apiData', addApiData);
-
-// addApiData: req, res --> void
-// Verifies a Post is receieved, then builds a new
-// entry using the API data
-function addApiData (req, res){
+// Async used because await was dependent
+app.post('/apiData', async function (req, res){
     res.send("POST Receieved")
     console.log(process.env.API_KEY)
-    const newData = req.body;
+    const newData = await fetch(`${apiURL}key=${apiKey}&url=${req.body.name}&lang=en`);
     let nlpEntry = {
        model: newData.model,
        score_tag: newData.score_tag,
@@ -79,4 +75,4 @@ function addApiData (req, res){
     }
     apiData=nlpEntry
 }
-
+)
