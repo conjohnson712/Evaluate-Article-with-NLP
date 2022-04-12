@@ -7,7 +7,7 @@ function checkForName(inputText) {
 
     if(regex == null) {
         alert("Please Enter A Valid URL")
-    }
-}
+    };
+};
 
-export { checkForName }
+export { checkForName };

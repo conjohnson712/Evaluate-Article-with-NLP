@@ -4,44 +4,44 @@
 const dotenv = require('dotenv');
 dotenv.config({path:'.env'});
 
-const apiKey = process.env.API_KEY
-const apiURL = 'https://api.meaningcloud.com/sentiment-2.1?'
+const apiKey = process.env.API_KEY;
+const apiURL = 'https://api.meaningcloud.com/sentiment-2.1?';
 
-var path = require('path')
-const express = require('express')
-const bodyParser = require('body-parser')
-const cors = require('cors')
-const mockAPIResponse = require('./mockAPI.js')
+var path = require('path');
+const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const mockAPIResponse = require('./mockAPI.js');
 
-const app = express()
+const app = express();
 
 console.log(`Your api key is ${apiKey}`);
 
 app.use(bodyParser.urlencoded({
     extended: false
-}))
-app.use(bodyParser.json())
+}));
+app.use(bodyParser.json());
 
-app.use(cors())
-app.use(express.static('dist'))
+app.use(cors());
+app.use(express.static('dist'));
 
-console.log(__dirname)
+console.log(__dirname);
 
 app.get('/', function (req, res) {
     res.sendFile('dist/index.html')
     // res.sendFile(path.resolve('src/client/views/index.html'))
-})
+});
 
 // designates what port the app will listen to for incoming requests
-const port = 8712
+const port = 8712;
 
 const server = app.listen(8712, function () {
     console.log(`Example app listening on port ${port}!`)
-})
+});
 
 app.get('/test', function (req, res) {
     res.send(mockAPIResponse)
-})
+});
 
 
 /* Function to POST data */
@@ -72,7 +72,7 @@ app.post('/apiData', async function (req, res){
        subjectivity: newData.subjectivity,
        confidence: newData.confidence,
        irony: newData.irony
-    }
-    apiData=nlpEntry
+    };
+    apiData=nlpEntry;
 }
-)
+);

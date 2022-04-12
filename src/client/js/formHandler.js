@@ -9,7 +9,7 @@ function handleSubmit(event) {
     // Response Section from MeaningCloud: https://learn.meaningcloud.com/developer/sentiment-analysis/2.1/doc/response
     let formText = document.getElementById('name').value
     if (Client.checkForName(formText)){
-        console.log("::: Form Submitted :::")
+        console.log("::: Form Submitted :::");
         fetch('http://localhost:8712/apiData', {
             method: "POST",
             credentials: "same-origin",
@@ -21,11 +21,11 @@ function handleSubmit(event) {
     .then(res => res.json())
     .then(function(res) {
         updateUI(res)
-    })
+    });
     } else {
         alert('Submission Failed')
-    }
-}
+    };
+};
 
 // Event Listener to start handleSubmit on Click
 document.getElementById("submit").addEventListener("click", handleSubmit);
@@ -38,8 +38,8 @@ const updateUI = async () => {
     const request = await fetch('http://localhost:8712/apiData');
     try {
         // Transform into JSON
-        const allData = await request.json()
-        console.log(allData)
+        const allData = await request.json();
+        console.log(allData);
         // Write updated data to DOM elements
         document.getElementById('model').innerHTML = allData.model;
         document.getElementById('score_tag').innerHTML = allData.score_tag;
@@ -49,9 +49,9 @@ const updateUI = async () => {
         document.getElementById('irony').innerHTML = allData.irony;
     }
     catch(error) {
-        console.log('error', error)
+        console.log('error', error);
         // Appropriately handle errors
-    }
-}
+    };
+};
 
-export { handleSubmit, updateUI }
+export { handleSubmit, updateUI };
