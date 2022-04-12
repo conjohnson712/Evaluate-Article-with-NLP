@@ -19,8 +19,8 @@
         <main>
             <section>
                 <form class="Input" onsubmit="return Client.handleSubmit(event)">
-                    <input id="name" type="text" name="input" value="" onblur="" placeholder="name"> <!--onBlur() removed to stop error messages-->
-                    <input type="submit" name="" value="submit" onclick="return Client.handleSubmit(event)" onsubmit="return handleSubmit(event)">
+                    <input id="name" type="text" name="input" value="" onblur="" placeholder="Enter URL"> <!--onBlur() removed to stop error messages-->
+                    <input id="submit" type="submit" name="" value="submit" onclick="return Client.handleSubmit(event)" onsubmit="return handleSubmit(event)">
                 </form>
             </section>
 
@@ -39,7 +39,8 @@
         </main>
 
         <footer>
-            <p>This is a footer</p>
+            <div id="copyright">The starter code and instructions for completing this project were courtesy of Udacity.com</div>
+            <div id="api-credit">The Natural Language Processing API is courtesy of <a href="https://www.meaningcloud.com/developer/sentiment-analysis">MeaningCloud</a></div>
         </footer>
 
         <!--
