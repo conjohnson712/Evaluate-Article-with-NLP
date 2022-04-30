@@ -45,12 +45,12 @@ const updateUI = async () => {
         const allData = await request.json();
         console.log(allData);
         // Write updated data to DOM elements
-        document.getElementById('model').innerHTML = allData.model;
-        document.getElementById('score_tag').innerHTML = allData.score_tag;
-        document.getElementById('agreement').innerHTML = allData.agreement;
-        document.getElementById('subjectivity').innerHTML = allData.subjectivity;
-        document.getElementById('confidence').innerHTML = allData.confidence;
-        document.getElementById('irony').innerHTML = allData.irony;
+        document.getElementById('model').innerHTML = `Model: ${allData.model}`;
+        document.getElementById('score_tag').innerHTML = `Score Tag: ${allData.score_tag}`;
+        document.getElementById('agreement').innerHTML = `Agreement: ${allData.agreement}`;
+        document.getElementById('subjectivity').innerHTML = `Subjectivity: ${allData.subjectivity}`;
+        document.getElementById('confidence').innerHTML = `Confidence: ${allData.confidence}`;
+        document.getElementById('irony').innerHTML = `Irony: ${allData.irony}`;
     }
     catch(error) {
         console.log('error', error);
