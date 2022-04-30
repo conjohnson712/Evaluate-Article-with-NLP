@@ -1,4 +1,9 @@
 // Reference: Taken Directly from Project Instructions
+/**
+
+* @jest-environment jsdom
+
+*/
 import { nameChecker } from '../src/client/js/nameChecker';
 
 // The describe() function takes two arguments - a string description, and a test suite as a callback function.     

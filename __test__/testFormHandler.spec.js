@@ -1,5 +1,10 @@
 // Reference: Taken Directly from Project Instructions
 // Import the js file to test
+/**
+
+* @jest-environment jsdom
+
+*/
 import { handleSubmit } from "../src/client/js/formHandler";
 import { updateUI } from "../src/client/js/formHandler";
 

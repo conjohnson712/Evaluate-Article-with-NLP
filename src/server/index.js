@@ -15,7 +15,11 @@ const mockAPIResponse = require('./mockAPI.js');
 
 const app = express();
 
-console.log(`Your api key is ${apiKey}`);
+// fetch is not defined by default in node - Mentor Dipika C
+const fetch = require("node-fetch");
+
+// console.log(`Your api key is ${apiKey}`);  // Used for testing API key entry
+
 
 app.use(bodyParser.urlencoded({
     extended: false
@@ -61,10 +65,13 @@ app.get('/apiData', (req, res)=>{
 
 // POST Route 
 // Async used because await was dependent
+// Changes made according to suggestions from Mentor Dipika C
 app.post('/apiData', async function (req, res){
-    res.send("POST Receieved")
-    console.log(process.env.API_KEY)
-    const newData = await fetch(`${apiURL}key=${apiKey}&url=${req.body.name}&lang=en`);
+    const url = `${apiURL}&key=${apiKey}&url=${req.body.url}&lang=en`;
+    console.log(url)
+    const newData = await fetch(url)
+                            .then(res => res.json());
+    console.log(newData);
     let nlpEntry = {
        model: newData.model,
        score_tag: newData.score_tag,
@@ -74,5 +81,7 @@ app.post('/apiData', async function (req, res){
        irony: newData.irony
     };
     apiData=nlpEntry;
+    console.log(apiData);
+    res.send(apiData);
 }
 );

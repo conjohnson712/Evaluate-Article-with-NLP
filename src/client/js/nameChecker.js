@@ -7,6 +7,8 @@ function checkForName(inputText) {
 
     if(regex == null) {
         alert("Please Enter A Valid URL")
+    } else {
+        return true;
     };
 };
 
