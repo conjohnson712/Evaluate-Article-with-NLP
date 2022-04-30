@@ -28,8 +28,12 @@ function handleSubmit(event) {
 };
 
 // Event Listener to start handleSubmit on Click
-document.getElementById("submit").addEventListener("click", handleSubmit);
-
+// If statement added to pass Jest
+// Reference: https://stackoverflow.com/questions/26107125/cannot-read-property-addeventlistener-of-null
+let submit = document.getElementById("submit");
+if(submit){
+    submit.addEventListener("click", handleSubmit);
+};
 // updateUI: async --> void
 // Function to update UI with NLP results
 // Reference: 
